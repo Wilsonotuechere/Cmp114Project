@@ -1,0 +1,14 @@
+class CurrentAccount(Account):
+    def _init_(self, account_number, balance=0, overdraft_limit=0):
+        super()._init_(account_number, balance)
+        self.overdraft_limit = overdraft_limit
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if self.balance + self.overdraft_limit >= amount:
+                self.balance -= amount
+                return True
+            else:
+                return False
+        else:
+            return False
